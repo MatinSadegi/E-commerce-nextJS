@@ -1,5 +1,7 @@
+import React from 'react';
 import Link from 'next/link'
-import React from 'react'
+import data from '../utils/data';
+import ProductItem from './ProductItem';
 
 const Layout = () => {
   return (
@@ -10,13 +12,23 @@ const Layout = () => {
             amazoon
           </Link>
           <div>
-            <Link href="/cart" className="p-2">Cart</Link>
-            <Link href="/login" className="p-2">Login</Link>
+            <Link href="/cart" className="p-2">
+              Cart
+            </Link>
+            <Link href="/login" className="p-2">
+              Login
+            </Link>
           </div>
         </nav>
       </header>
-      <main className='container m-auto mt-4 px-4'>Home page</main>
-      <footer className='h-10 flex justify-center items-center shadow-inner'>
+      <main className="container m-auto mt-4 px-4">
+        <div className="grid grid-cols-1 gap-4  md:grid-cols-3 lg:grid-cols-4">
+          {data.products.map((product) => (
+            <ProductItem product={product} key={product.slug} />
+          ))}
+        </div>
+      </main>
+      <footer className="h-10 flex justify-center items-center shadow-inner">
         <p>Copyright 2023 Amazoon</p>
       </footer>
     </div>
