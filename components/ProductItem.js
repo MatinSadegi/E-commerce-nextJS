@@ -9,9 +9,9 @@ const ProductItem = ({ product }) => {
         <Image
           src={product.image}
           alt={product.name}
-          width={300}
-          height={290}
-          className="rounded shadow "
+          width={350}
+          height={200}
+          className="rounded shadow h-[300px] object-center "
         />
       </Link>
       <div className="flex flex-col items-center justify-center p-5">

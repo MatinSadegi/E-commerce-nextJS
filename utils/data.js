@@ -28,7 +28,7 @@ const data = {
       name: "Slim Shirt",
       slug: "slim-shirt",
       category: "Shirts",
-      image: "/images/shirt3.jpg",
+      image: "/images/shirt5.jpg",
       price: 90,
       brand: "Raymond",
       rating: 4.5,

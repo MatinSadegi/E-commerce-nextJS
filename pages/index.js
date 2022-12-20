@@ -1,15 +1,15 @@
-import Head from 'next/head'
-import Layout from '../components/Layout'
+import Layout from "../components/Layout";
+import data from "../utils/data";
+import ProductItem from "../components/ProductItem";
 
 export default function Home() {
   return (
-    <div >
-      <Head>
-        <title>Amazoon</title>
-        <meta name="description" content="E-commerce" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Layout/>
-    </div>
-  )
+    <Layout title="Home Page">
+      <div className="grid container mx-auto grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {data.products.map((product) => (
+          <ProductItem product={product} key={product.slug} />
+        ))}
+      </div>
+    </Layout>
+  );
 }
