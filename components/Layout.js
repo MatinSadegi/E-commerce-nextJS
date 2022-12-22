@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { Basket, Search, Favorite, Person } from "../public/icons";
+import { Store } from "../utils/store";
 
 const Layout = ({ children, title }) => {
+  const { state } = useContext(Store);
+  const { cart } = state;
   return (
     <>
       <Head>
@@ -36,9 +39,17 @@ const Layout = ({ children, title }) => {
               <Link href="/favorite" className="p-2">
                 <Favorite className="text-xl transition-all hover:fill-yellow-700" />
               </Link>
-              <Link href="/cart" className="p-2">
-                <Basket className="text-xl transition-all hover:fill-yellow-700" />
-              </Link>
+              <div className="relative">
+                {cart.cartItems.length > 0 && (
+                  <span className=" w-[18px] h-[18px] text-[11px] text-center bg-yellow-700 text-white flex justify-center items-center absolute left-1.5 top-1.5 rounded-[50%]">
+                    {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                  </span>
+                )}
+
+                <Link href="/cart" className="p-2">
+                  <Basket className="text-xl transition-all hover:fill-yellow-700" />
+                </Link>
+              </div>
               <Link href="/login" className="p-2">
                 <Person className="text-xl transition-all hover:fill-yellow-700" />
               </Link>

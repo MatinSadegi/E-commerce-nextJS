@@ -1,19 +1,30 @@
-import React, { use, useState } from "react";
+import React, { useContext} from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import data from "../../utils/data";
-import Link from "next/link";
 import Image from "next/image";
 import { Favorite, Plus, Minus } from "../../public/icons";
 import AccordionForm from "../../components/AccordionForm";
+import { Store } from "../../utils/store";
 
 const ProductScreen = () => {
-  
+  const {state,dispatch } = useContext(Store)
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((item) => item.slug === slug);
   if (!product) {
     return <div>Product Not Found</div>;
+  }
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find(
+      (item) => item.slug === product.slug
+    );
+    const quantity  = existItem ? existItem.quantity + 1 : 1;
+    if(product.countInStock < quantity){
+      alert ('Sorry . Product is out of stock');
+      return;
+    }
+    dispatch({type:'CART_ADD_ITEM', payload:{...product, quantity}})
   }
   return (
     <Layout title={product.name}>
@@ -28,8 +39,8 @@ const ProductScreen = () => {
         </p>
       </div>
       {/* product main */}
-      <div className=" mt-10 mx-auto max-w-[90%] grid md:grid-cols-3 md:gap-20  ">
-        <div className="md:col-span-2">
+      <div className=" mt-10 mx-auto max-w-[90%] grid md:grid-cols-[2fr_1fr] md:gap-20  ">
+        <div className="">
           <Image
             src={product.image}
             alt={product.name}
@@ -102,7 +113,7 @@ const ProductScreen = () => {
             ) : "Unavailable"}
           </div>
           <div className=" flex items-center gap-6">
-            <button className="px-10 py-4 bg-gray-500 text-white transition-all hover:bg-yellow-700">
+            <button onClick={addToCartHandler} className="px-10 py-4 bg-gray-500 text-white transition-all hover:bg-yellow-700">
               Add to cart
             </button>
             <Favorite className="text-2xl fill-gray-500 transition-all hover:fill-yellow-700" />
