@@ -1,10 +1,9 @@
-import React,{useState} from 'react';
+import React, { useState } from "react";
 import { Plus, Minus } from "../public/icons";
 
-
-const AccordionForm = ({description, category}) => {
-    const [showDescription, setShowDescription] = useState(false);
-    const [showCategory, setShowCategory] = useState(false);
+const AccordionForm = ({ description, category }) => {
+  const [showDescription, setShowDescription] = useState(false);
+  const [showCategory, setShowCategory] = useState(false);
   return (
     <>
       <div
@@ -12,13 +11,13 @@ const AccordionForm = ({description, category}) => {
         className="mt-10 border-b pb-4 group "
       >
         <div className="flex justify-between items-center">
-          <h4 className="font-medium text-sm group-hover:text-yellow-700 transition-all ">
+          <h4 className="font-medium text-sm group-hover:text-yellow-c transition-all ">
             Description
           </h4>
           {showDescription ? (
-            <Minus className="transition-all group-hover:text-yellow-700" />
+            <Minus className="transition-all group-hover:text-yellow-c" />
           ) : (
-            <Plus className="transition-all group-hover:text-yellow-700" />
+            <Plus className="transition-all group-hover:text-yellow-c" />
           )}
         </div>
         <p
@@ -34,13 +33,13 @@ const AccordionForm = ({description, category}) => {
         className="mt-4 border-b pb-4 group "
       >
         <div className="flex justify-between items-center">
-          <h4 className="font-medium text-sm group-hover:text-yellow-700 transition-all ">
+          <h4 className="font-medium text-sm group-hover:text-yellow-c transition-all ">
             Category
           </h4>
           {showCategory ? (
-            <Minus className="transition-all group-hover:text-yellow-700" />
+            <Minus className="transition-all group-hover:text-yellow-c" />
           ) : (
-            <Plus className="transition-all group-hover:text-yellow-700" />
+            <Plus className="transition-all group-hover:text-yellow-c" />
           )}
         </div>
         <p
@@ -53,6 +52,6 @@ const AccordionForm = ({description, category}) => {
       </div>
     </>
   );
-}
+};
 
-export default AccordionForm
+export default AccordionForm;

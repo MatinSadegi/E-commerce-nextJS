@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+
 const ProductItem = ({ product }) => {
   return (
     <div className="card">
@@ -24,6 +25,7 @@ const ProductItem = ({ product }) => {
           Add to cart
         </button>
       </div>
+
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
 import data from "../../utils/data";
@@ -6,9 +6,11 @@ import Image from "next/image";
 import { Favorite, Plus, Minus } from "../../public/icons";
 import AccordionForm from "../../components/AccordionForm";
 import { Store } from "../../utils/store";
+import SideCart from "../../components/SideCart";
 
 const ProductScreen = () => {
-  const {state,dispatch } = useContext(Store)
+  const [showSideCart, setShowSideCart] = useState(false);
+  const { state, dispatch } = useContext(Store);
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((item) => item.slug === slug);
@@ -19,20 +21,20 @@ const ProductScreen = () => {
     const existItem = state.cart.cartItems.find(
       (item) => item.slug === product.slug
     );
-    const quantity  = existItem ? existItem.quantity + 1 : 1;
-    if(product.countInStock < quantity){
-      alert ('Sorry . Product is out of stock');
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    if (product.countInStock < quantity) {
+      alert("Sorry . Product is out of stock");
       return;
     }
-    dispatch({type:'CART_ADD_ITEM', payload:{...product, quantity}})
-  }
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
+    setShowSideCart(true);
+    
+  };
   return (
     <Layout title={product.name}>
       {/* product header */}
       <div className="py-10 bg-red-50 ">
-        <h2 className="text-center text-3xl font-medium text-gray-500">
-          {product.name}
-        </h2>
+        <h2 className="text-center text-3xl  text-gray-500">{product.name}</h2>
         <p className="text-center mt-2">
           Home / {product.category} /{" "}
           <span className="text-gray-500">{product.name}</span>
@@ -110,17 +112,26 @@ const ProductScreen = () => {
                 />
                 <p>In stock</p>
               </div>
-            ) : "Unavailable"}
+            ) : (
+              "Unavailable"
+            )}
           </div>
           <div className=" flex items-center gap-6">
-            <button onClick={addToCartHandler} className="px-10 py-4 bg-gray-500 text-white transition-all hover:bg-yellow-700">
+            <button
+              onClick={addToCartHandler}
+              className="px-10 py-4 bg-gray-500 text-white transition-all hover:bg-yellow-c"
+            >
               Add to cart
             </button>
-            <Favorite className="text-2xl fill-gray-500 transition-all hover:fill-yellow-700" />
+            <Favorite className="text-2xl fill-gray-500 transition-all hover:fill-yellow-c" />
           </div>
-              <AccordionForm description={product.description} category={product.category}/>
+          <AccordionForm
+            description={product.description}
+            category={product.category}
+          />
         </div>
       </div>
+      <SideCart showSideCart={showSideCart} setShowSideCart={setShowSideCart} />
     </Layout>
   );
 };

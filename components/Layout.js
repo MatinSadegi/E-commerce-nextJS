@@ -13,14 +13,17 @@ const Layout = ({ children, title }) => {
         <title>{title ? title + " - Amazoon" : "Amazoon"}</title>
         <meta name="description" content="E-commerce" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/> 
       </Head>
       <div className="min-h-screen flex flex-col justify-between ">
-        <header>
+        <header className="mb-4">
           <nav className="h-20 max-w-[90%] mx-auto grid grid-cols-3 items-center  ">
             <div>
               <Link
                 href="/"
-                className="font-medium text-sm transition-all hover:text-yellow-700"
+                className="font-medium text-sm transition-all hover:text-yellow-c"
               >
                 Home
               </Link>
@@ -34,29 +37,29 @@ const Layout = ({ children, title }) => {
                   className="py-2 border-b outline-none text-sm placeholder:text-xs"
                   placeholder="Search Products"
                 />
-                <Search className=" absolute right-0  text-lg transition-all hover:fill-yellow-700" />
+                <Search className=" absolute right-0  text-lg transition-all hover:fill-yellow-c" />
               </div>
               <Link href="/favorite" className="p-2">
-                <Favorite className="text-xl transition-all hover:fill-yellow-700" />
+                <Favorite className="text-xl transition-all hover:fill-yellow-c" />
               </Link>
               <div className="relative">
                 {cart.cartItems.length > 0 && (
-                  <span className=" w-[18px] h-[18px] text-[11px] text-center bg-yellow-700 text-white flex justify-center items-center absolute left-1.5 top-1.5 rounded-[50%]">
+                  <span className=" w-[18px] h-[18px] text-[11px] text-center bg-yellow-c text-white flex justify-center items-center absolute left-1.5 top-1.5 rounded-[50%]">
                     {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                   </span>
                 )}
 
                 <Link href="/cart" className="p-2">
-                  <Basket className="text-xl transition-all hover:fill-yellow-700" />
+                  <Basket className="text-xl transition-all hover:fill-yellow-c" />
                 </Link>
               </div>
               <Link href="/login" className="p-2">
-                <Person className="text-xl transition-all hover:fill-yellow-700" />
+                <Person className="text-xl transition-all hover:fill-yellow-c" />
               </Link>
             </div>
           </nav>
         </header>
-        <main>{children}</main>
+        <main className=" font-Roboto">{children}</main>
         <footer className="h-10 flex justify-center items-center shadow-inner">
           <p>Copyright 2023 Amazoon</p>
         </footer>
