@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { Basket, Search, Favorite, Person } from "../public/icons";
@@ -7,15 +7,22 @@ import { Store } from "../utils/store";
 const Layout = ({ children, title }) => {
   const { state } = useContext(Store);
   const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
   return (
     <>
       <Head>
         <title>{title ? title + " - Amazoon" : "Amazoon"}</title>
         <meta name="description" content="E-commerce" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/> 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <div className="min-h-screen flex flex-col justify-between ">
         <header className="mb-4">
@@ -43,9 +50,9 @@ const Layout = ({ children, title }) => {
                 <Favorite className="text-xl transition-all hover:fill-yellow-c" />
               </Link>
               <div className="relative">
-                {cart.cartItems.length > 0 && (
+                {cartItemsCount > 0 && (
                   <span className=" w-[18px] h-[18px] text-[11px] text-center bg-yellow-c text-white flex justify-center items-center absolute left-1.5 top-1.5 rounded-[50%]">
-                    {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    {cartItemsCount}
                   </span>
                 )}
 
