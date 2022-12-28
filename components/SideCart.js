@@ -50,14 +50,14 @@ const SideCart = ({ showSideCart, setShowSideCart }) => {
         </div>
         <button
           onClick={() => router.push("/cart")}
-          className="w-full bg-black text-white font-medium text-sm py-3 mb-2 transition-all hover:bg-yellow-c"
+          className=" black-button"
         >
           VIEW CART
         </button>
         <br />
         <button
           onClick={() => router.push("/shipping")}
-          className="w-full bg-black text-white font-medium text-sm py-3 transition-all hover:bg-yellow-c"
+          className=" black-button mt-2"
         >
           CHECK OUT
         </button>

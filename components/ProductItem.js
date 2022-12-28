@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-
 const ProductItem = ({ product }) => {
   return (
     <div className="card">
@@ -21,11 +20,10 @@ const ProductItem = ({ product }) => {
         </Link>
         <p className="mb-2">{product.brand}</p>
         <p>{product.price}</p>
-        <button className="primary-button" type="button">
+        <button className="yellow-c-button" type="button">
           Add to cart
         </button>
       </div>
-
     </div>
   );
 };
