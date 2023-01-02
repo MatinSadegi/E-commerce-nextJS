@@ -1,9 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { Store } from "../utils/store";
 import Image from "next/image";
 import Layout from "../components/Layout";
 
 const Cart = () => {
+  const { status } = useSession();
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cItems, setCItems] = useState([]);
@@ -101,7 +105,14 @@ const Cart = () => {
                 <button className="bg-gray-600 text-white text-xs py-3 px-5 transition-all hover:bg-yellow-c">
                   Update
                 </button>
-                <button className="bg-gray-600 text-white text-xs py-3 px-5 transition-all hover:bg-yellow-c">
+                <button
+                  onClick={() => {
+                    router.push(
+                      `${status === "authenticated" ? "/shipping" : "/login"}`
+                    );
+                  }}
+                  className="bg-gray-600 text-white text-xs py-3 px-5 transition-all hover:bg-yellow-c"
+                >
                   Checkout
                 </button>
               </div>

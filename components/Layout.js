@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import Head from "next/head";
-import { Basket, Search, Favorite, Person } from "../public/icons";
+import { Basket, Search, Favorite, Person, Logout } from "../public/icons";
 import { Store } from "../utils/store";
 
 const Layout = ({ children, title }) => {
+  const { status } = useSession();
   const { state } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -60,9 +62,18 @@ const Layout = ({ children, title }) => {
                   <Basket className="text-xl transition-all hover:fill-yellow-c" />
                 </Link>
               </div>
-              <Link href="/login" className="p-2">
+              <Link
+                href={`${status === "authenticated" ? "/profile" : "/login"}`}
+                className="p-2"
+              >
                 <Person className="text-xl transition-all hover:fill-yellow-c" />
               </Link>
+              {status === "authenticated" && (
+                <Logout
+                  onClick={() => signOut()}
+                  className=" text-xl transition-all cursor-pointer hover:fill-yellow-c"
+                />
+              )}
             </div>
           </nav>
         </header>
