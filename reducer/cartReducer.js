@@ -1,13 +1,9 @@
-
-
 export const INITIAL_STATE = {
   cart:
     typeof window !== "undefined" && localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
-      : { cartItems: [] },
+      : { cartItems: [], shippingInfo: {} },
 };
-
-
 
 export const cartReducer = (state, action) => {
   switch (action.type) {
@@ -36,6 +32,23 @@ export const cartReducer = (state, action) => {
         JSON.stringify({ ...state.cart, cartItems })
       );
       return { ...state, cart: { ...state.cart, cartItems } };
+    }
+    case "SAVE_SHIPPING_INFO": {
+      const shippingInfo = action.payload;
+      localStorage.setItem(
+        "cart",
+        JSON.stringify({ ...state.cart, shippingInfo })
+      );
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          shippingInfo: {
+            ...state.cart.shippingInfo,
+            ...action.payload,
+          },
+        },
+      };
     }
     default:
       return state;
