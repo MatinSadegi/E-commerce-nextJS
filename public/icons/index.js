@@ -6,3 +6,8 @@ export {default as Search} from "./search.svg";
 export {default as Person} from "./person.svg";
 export {default as Multiply} from "./multiply.svg"; 
 export {default as Logout} from "./logout.svg"; 
+export {default as Customer} from "./customer.png"; 
+export {default as Burger} from "./burger.svg"; 
+export {default as Facebook} from './facebook.svg'
+export {default as Twitter} from './twitter.svg'
+export {default as Pinterest} from './pinterest.svg'

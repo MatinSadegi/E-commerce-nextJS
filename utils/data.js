@@ -1,12 +1,20 @@
-import bcrypt, { hash } from "bcryptjs";
+import bcrypt from "bcryptjs";
 
 const data = {
   users: [
     {
-      name: "Matin",
+      firstName: "Matin",
+      lastName: "Sadeghi",
       email: "admin@example.com",
       password: bcrypt.hashSync("123456"),
       isAdmin: true,
+    },
+    {
+      firstName: "Ali",
+      lastName: "Sadeghi",
+      email: "user@example.com",
+      password: bcrypt.hashSync("123456"),
+      isAdmin: false,
     },
   ],
   products: [
@@ -24,7 +32,7 @@ const data = {
     },
     {
       name: "Fit Shirt",
-      slug: "fit-shirt",
+      slug: "fit-shirt2",
       category: "Shirts",
       image: "/images/shirt2.jpg",
       price: 60,
@@ -38,12 +46,24 @@ const data = {
       name: "Slim Shirt",
       slug: "slim-shirt",
       category: "Shirts",
-      image: "/images/shirt5.jpg",
+      image: "/images/shirt4.jpg",
       price: 90,
       brand: "Raymond",
       rating: 4.5,
       numReviews: 3,
       countInStock: 20,
+      description: "A popular shirt",
+    },
+    {
+      name: "Fit Shirt",
+      slug: "fit-shirt",
+      category: "Shirts",
+      image: "/images/shirt5.jpg",
+      price: 60,
+      brand: "AG",
+      rating: 4.1,
+      numReviews: 10,
+      countInStock: 25,
       description: "A popular shirt",
     },
     {
@@ -77,6 +97,18 @@ const data = {
       image: "/images/pants3.jpg",
       price: 75,
       brand: "Casely",
+      rating: 2.4,
+      numReviews: 14,
+      countInStock: 20,
+      description: "A popular pants",
+    },
+    {
+      name: "Classic Pants",
+      slug: "classic-pants2",
+      category: "Pants",
+      image: "/images/pants4.jpg",
+      price: 75,
+      brand: "Bonobos",
       rating: 2.4,
       numReviews: 14,
       countInStock: 20,

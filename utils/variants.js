@@ -1,3 +1,5 @@
+
+
 export const SideCartParent = {
   visible: {
     display: "flex",
@@ -33,4 +35,21 @@ export const sideCart = {
   },
 };
 
-
+export const hamburgerMenu = {
+  open: {
+    translateX: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      damping: 13,
+    },
+  },
+  close: {
+    translateX: "-100vw",
+    opacity: 0,
+    transition: {
+      type: "spring",
+      damping: 15,
+    },
+  },
+};
