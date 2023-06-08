@@ -30,7 +30,6 @@ const Login = () => {
   });
   const router = useRouter();
   const { data, status } = useSession();
-
   const submitHandler = async (e) => {
     e.preventDefault();
     if (isLogin) {
@@ -58,7 +57,7 @@ const Login = () => {
   };
   return (
     <Layout>
-      <form className=" max-w-md mx-auto mb-4" onSubmit={submitHandler}>
+      <form className=" max-w-md mx-auto my-16" onSubmit={submitHandler}>
         <h1 className="text-center mb-6">
           {isLogin ? "Login" : "Create Account"}
         </h1>
