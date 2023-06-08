@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { Store } from "../utils/store";
 import Image from "next/image";
 import Layout from "../components/Layout";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const { status } = useSession();
@@ -19,8 +21,12 @@ const Cart = () => {
   const removeItemHandler = (item) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
-  const updateCartHandler = (item, qty) => {
+  const updateCartHandler = async(item, qty) => {
     const quantity = +qty;
+    const {data} = await axios.get(`api/products/${item._id}`)
+    if(data.countInStock <quantity){
+      return toast.error('Sorry . Product is out of stock')
+    }
     dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
   };
   return (
