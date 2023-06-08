@@ -1,35 +1,33 @@
-import React, { useContext, useState } from "react";
-import { useRouter } from "next/router";
-import Layout from "../../components/Layout";
-import data from "../../utils/data";
+import React, { useContext } from "react";
 import Image from "next/image";
-import { Favorite, Plus, Minus } from "../../public/icons";
-import AccordionForm from "../../components/AccordionForm";
+import Product from "../../models/Product";
+import db from "../../utils/db";
 import { Store } from "../../utils/store";
-import SideCart from "../../components/SideCart";
+import Layout from "../../components/Layout";
+import AccordionForm from "../../components/AccordionForm";
+import SideCart from "../../components/sideCart/SideCart";
+import { Favorite } from "../../public/icons";
+import StickyFooter from "../../components/StickyFooter";
+import Rating from "../../components/Rating";
 
-const ProductScreen = () => {
-  const [showSideCart, setShowSideCart] = useState(false);
-  const { state, dispatch } = useContext(Store);
-  const { query } = useRouter();
-  const { slug } = query;
-  const product = data.products.find((item) => item.slug === slug);
+const ProductScreen = ({ product }) => {
+  const { state, dispatch, showSideCart, setShowSideCart } = useContext(Store);
   if (!product) {
     return <div>Product Not Found</div>;
   }
-  const addToCartHandler = () => {
+  const addToCartHandler = (val) => {
     const existItem = state.cart.cartItems.find(
       (item) => item.slug === product.slug
     );
-    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const quantity = existItem ? existItem.quantity + val : val;
     if (product.countInStock < quantity) {
       alert("Sorry . Product is out of stock");
       return;
     }
     dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
     setShowSideCart(true);
-    
   };
+
   return (
     <Layout title={product.name}>
       {/* product header */}
@@ -54,48 +52,7 @@ const ProductScreen = () => {
         <div>
           <h3 className=" text-2xl">{product.name}</h3>
           <div className="flex gap-2">
-            <div className="flex my-1">
-              {product.rating < 1 ? (
-                <img
-                  src="https://img.icons8.com/fluency-systems-regular/18/6b7280/star--v1.png"
-                  alt="star"
-                />
-              ) : (
-                <img src="https://img.icons8.com/fluency-systems-filled/18/6b7280/star.png" />
-              )}
-              {product.rating < 2 ? (
-                <img
-                  src="https://img.icons8.com/fluency-systems-regular/18/6b7280/star--v1.png"
-                  alt="star"
-                />
-              ) : (
-                <img src="https://img.icons8.com/fluency-systems-filled/18/6b7280/star.png" />
-              )}
-              {product.rating < 3 ? (
-                <img
-                  src="https://img.icons8.com/fluency-systems-regular/18/6b7280/star--v1.png"
-                  alt="star"
-                />
-              ) : (
-                <img src="https://img.icons8.com/fluency-systems-filled/18/6b7280/star.png" />
-              )}
-              {product.rating < 4 ? (
-                <img
-                  src="https://img.icons8.com/fluency-systems-regular/18/6b7280/star--v1.png"
-                  alt="star"
-                />
-              ) : (
-                <img src="https://img.icons8.com/fluency-systems-filled/18/6b7280/star.png" />
-              )}
-              {product.rating < 5 ? (
-                <img
-                  src="https://img.icons8.com/fluency-systems-regular/18/6b7280/star--v1.png"
-                  alt="star"
-                />
-              ) : (
-                <img src="https://img.icons8.com/fluency-systems-filled/18/6b7280/star.png" />
-              )}
-            </div>
+          <Rating rating={product.rating}/>
             <p className="text-gray-500">
               {product.numReviews > 0
                 ? `${product.numReviews} reviews`
@@ -118,8 +75,8 @@ const ProductScreen = () => {
           </div>
           <div className=" flex items-center gap-6">
             <button
-              onClick={addToCartHandler}
-              className="px-10 py-4 bg-gray-500 text-white transition-all hover:bg-yellow-c"
+              onClick={()=>addToCartHandler(1)}
+              className="px-14 py-4 bg-gray-500 text-white transition-all hover:bg-yellow-c"
             >
               Add to cart
             </button>
@@ -132,8 +89,25 @@ const ProductScreen = () => {
         </div>
       </div>
       <SideCart showSideCart={showSideCart} setShowSideCart={setShowSideCart} />
+      <StickyFooter
+        name={product.name}
+        reviews={product.numReviews}
+        image={product.image}
+        rating = {product.rating}
+        addToCart = {addToCartHandler}
+      />
     </Layout>
   );
 };
 
 export default ProductScreen;
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const { slug } = params;
+  await db.connect();
+  const product = await Product.findOne({ slug });
+  await db.disconnect();
+  return {
+    props: { product: product ? JSON.parse(JSON.stringify(product)) : null },
+  };
+}
