@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@splidejs/react-splide": "^0.7.12",
     "@svgr/webpack": "^6.5.1",
+    "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.7",
@@ -20,6 +22,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.42.1",
+    "react-responsive": "^9.0.2",
     "react-toastify": "^9.1.1"
   },
   "devDependencies": {
