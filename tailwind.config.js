@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -7,10 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "yellow-c": "#c6ac8f",
-        "shadow": "rgba(0,0,0,0.5)",
+        "yellow-c": "#c9aa6f",
+        shadow: "rgba(0,0,0,0.5)",
+      },
+      fontFamily: {
+        playFair: ["Playfair Display"],
       },
     },
   },
   plugins: [],
 };
+ 

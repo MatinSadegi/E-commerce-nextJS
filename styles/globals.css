@@ -7,7 +7,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, Roboto, BlinkMacSystemFont, Segoe UI, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    Ubuntu, Cantarell, Fira Sans, Droid Sans,Great Vibes, Helvetica Neue, sans-serif,cursive;
 }
 
 a {
@@ -18,6 +18,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
 
 @layer base {
   h1 {
@@ -32,10 +37,8 @@ a {
 }
 
 @layer components {
-  .card {
-    @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
-  }
+  
   .black-button{
-    @apply w-full bg-black text-white font-medium text-sm py-3 transition-all  hover:bg-yellow-c
+    @apply w-full bg-black text-white font-medium text-sm py-3 transition-all hover:bg-yellow-c
   }
 }
