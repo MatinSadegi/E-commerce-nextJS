@@ -1,5 +1,5 @@
 
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import { Splide, SplideSlide, SplideTrack} from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import Image from "next/image";
 import Layout from "../components/Layout";

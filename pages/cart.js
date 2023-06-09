@@ -13,6 +13,7 @@ const Cart = () => {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cItems, setCItems] = useState([]);
+  const [val, setVal] = useState(1);
   useEffect(() => {
     setCItems(cart.cartItems);
   }, [cart.cartItems]);
@@ -21,19 +22,19 @@ const Cart = () => {
   const removeItemHandler = (item) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
-  const updateCartHandler = async(item, qty) => {
+  const updateCartHandler = async (item, qty) => {
     const quantity = +qty;
-    const {data} = await axios.get(`api/products/${item._id}`)
-    if(data.countInStock <quantity){
-      return toast.error('Sorry . Product is out of stock')
+    const { data } = await axios.get(`api/products/${item._id}`);
+    if (data.countInStock < quantity) {
+      return toast.error("Sorry . Product is out of stock");
     }
     dispatch({ type: "CART_ADD_ITEM", payload: { ...item, quantity } });
   };
   return (
     <Layout title="Shopping Cart">
-      <div className="max-w-[75%] mx-auto flex flex-col justify-center items-center">
+      <div className="max-w-[75%] mx-auto mt-8 flex flex-col justify-center items-center">
         <h1
-          className={`font-bold ${
+          className={`font-bold mr-3 ${
             cart.cartItems.length === 0 ? "text-5xl" : "text-3xl"
           }`}
         >
@@ -85,12 +86,17 @@ const Cart = () => {
                 <div className="flex w-[30%] justify-between items-center text-gray-600">
                   <p>${item.price.toFixed(2)}</p>
                   <input
-                    type="number"
-                    placeholder={item.quantity}
-                    className="outline-none border border-gray-600 p-2 w-14"
-                    min="0"
+                    type="text"
+                    className="outline-none border border-gray-600 py-2 w-14 text-center"
+                    pattern="[0-9]*"
+                    value={val}
                     max={item.countInStock}
-                    onChange={(e) => updateCartHandler(item, e.target.value)}
+                    onChange={(e) => {
+                      setVal(() =>
+                        e.target.validity.valid ? e.target.value : ""
+                      );
+                      updateCartHandler(item, e.target.value);
+                    }}
                   />
                   <p>${(item.price * item.quantity).toFixed(2)}</p>
                 </div>
@@ -105,16 +111,18 @@ const Cart = () => {
                 Shipping & taxes calculated at checkout
               </p>
               <div className="flex gap-4">
-                <button className="bg-gray-600 text-white text-xs py-3 px-5 transition-all hover:bg-yellow-c">
+                <button
+                  onClick={() => router.push("/")}
+                  className="bg-gray-600 text-white text-xs py-3 px-5 transition-all hover:bg-yellow-c"
+                >
                   Continue shopping
-                </button>
-                <button className="bg-gray-600 text-white text-xs py-3 px-5 transition-all hover:bg-yellow-c">
-                  Update
                 </button>
                 <button
                   onClick={() => {
                     router.push(
-                      `${status === "authenticated" ? "/shipping" : "/login"}`
+                      `${
+                        status === "authenticated" ? "/information" : "/login"
+                      }`
                     );
                   }}
                   className="bg-gray-600 text-white text-xs py-3 px-5 transition-all hover:bg-yellow-c"

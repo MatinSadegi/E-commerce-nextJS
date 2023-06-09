@@ -41,4 +41,7 @@ a {
   .black-button{
     @apply w-full bg-black text-white font-medium text-sm py-3 transition-all hover:bg-yellow-c
   }
+  .blue-btn{
+    @apply bg-blue-600 text-sm text-white rounded-md py-5 px-4 transition-colors hover:bg-blue-700
+  }
 }

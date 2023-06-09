@@ -52,8 +52,8 @@ const Layout = ({ children, title }) => {
         />
       </Head>
       <div className="min-h-screen flex flex-col justify-between ">
-        <header className="py-2">
-          <nav className=" px-10 flex flex-col items-center relative w-full lg:flex-row ">
+        <header className="py-3">
+          <nav className=" px-24 flex flex-col items-center relative w-full lg:flex-row ">
             <motion.div
               initial="open"
               animate={isOpen ? "open" : "close"}
@@ -62,13 +62,13 @@ const Layout = ({ children, title }) => {
             >
               <Link
                 href="/"
-                className="w-full uppercase font-normal transition-all hover:text-yellow-c lg:font-medium lg:text-sm lg:normal-case"
+                className="w-full uppercase font-normal transition-all hover:text-yellow-c lg:font-medium lg:text-md lg:normal-case"
               >
                 Home
               </Link>
             </motion.div>
             <div className="flex justify-between items-center w-full lg:w-[55%]">
-              <h1 className="text-2xl font-bold flex lg:justify-center ">
+              <h1 className="text-4xl font-bold flex lg:justify-center ">
                 Amazoon
               </h1>
               <div className="flex items-center justify-end">
@@ -78,10 +78,10 @@ const Layout = ({ children, title }) => {
                     className="py-2 border-b hidden lg:block outline-none text-sm placeholder:text-xs"
                     placeholder="Search Products"
                   />
-                  <Search className=" absolute right-0 text-xl lg:text-lg transition-all hover:fill-yellow-c" />
+                  <Search className=" absolute right-0 text-lg transition-all hover:fill-yellow-c" />
                 </div>
                 <Link href="/favorite" className="p-2">
-                  <Favorite className="text-xl transition-all hover:fill-yellow-c" />
+                  <Favorite className="text-2xl transition-all hover:fill-yellow-c" />
                 </Link>
                 <div className="relative">
                   {cartItemsCount > 0 && (
@@ -93,19 +93,19 @@ const Layout = ({ children, title }) => {
                     href={`${status === "authenticated" ? "/cart" : "/login"}`}
                     className="p-2"
                   >
-                    <Basket className="text-xl transition-all hover:fill-yellow-c" />
+                    <Basket className="text-2xl transition-all hover:fill-yellow-c" />
                   </Link>
                 </div>
                 <Link
                   href={`${status === "authenticated" ? "/profile" : "/login"}`}
                   className="p-2"
                 >
-                  <Person className="text-xl transition-all hover:fill-yellow-c" />
+                  <Person className="text-2xl transition-all hover:fill-yellow-c" />
                 </Link>
                 {status === "authenticated" && (
                   <Logout
                     onClick={() => signOut()}
-                    className=" text-xl transition-all cursor-pointer hidden lg:block hover:fill-yellow-c"
+                    className=" text-2xl transition-all cursor-pointer hidden lg:block hover:fill-yellow-c"
                   />
                 )}
                 <Burger
@@ -117,8 +117,8 @@ const Layout = ({ children, title }) => {
           </nav>
         </header>
         <main className=" font-Roboto overflow-hidden">{children}</main>
-        <footer className="px-10 mt-14">
-          <div className="flex flex-col text-center md:text-left gap-10 lg:gap-0 lg:flex-row justify-between text-sm py-14 ">
+        <footer className="px-24 mt-10">
+          <div className="flex flex-col text-center md:text-left gap-10 lg:gap-0 lg:flex-row justify-between text-sm py-10">
             <div>
               <h2>Amazoon</h2>
               <p className="text-gray-500 mt-2">

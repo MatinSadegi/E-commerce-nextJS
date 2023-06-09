@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import Image from "next/image";
 import Product from "../../models/Product";
 import db from "../../utils/db";
@@ -15,12 +16,13 @@ const ProductScreen = ({ product }) => {
   if (!product) {
     return <div>Product Not Found</div>;
   }
-  const addToCartHandler = (val) => {
+  const addToCartHandler = async(val) => {
     const existItem = state.cart.cartItems.find(
       (item) => item.slug === product.slug
     );
     const quantity = existItem ? existItem.quantity + val : val;
-    if (product.countInStock < quantity) {
+    const { data } = await axios.get(`../api/products/${product._id}`);
+    if (data.countInStock < quantity) {
       alert("Sorry . Product is out of stock");
       return;
     }
