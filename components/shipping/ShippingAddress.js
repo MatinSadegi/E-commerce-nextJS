@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
+import { useRouter } from "next/router";
+
 import { useForm } from "react-hook-form";
-import { Store } from "../utils/store";
+import { Store } from "../../utils/store";
 import Link from "next/link";
 
-const ShippingForm = () => {
+const ShippingAddress = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -11,7 +15,9 @@ const ShippingForm = () => {
   } = useForm();
   const { dispatch } = useContext(Store);
   const submitHandler = async (data) => {
+    console.log(data)
     await dispatch({ type: "SAVE_SHIPPING_INFO", payload: data });
+    router.push('/shipping')
   };
 
   return (
@@ -27,7 +33,7 @@ const ShippingForm = () => {
             Country
           </label>
           <input
-            className="border rounded w-full px-4 py-1.5 text-sm text-gray-600 outline-none focus:border-black"
+            className="border rounded w-full px-4 py-3 text-sm text-gray-600 outline-none focus:border-black"
             type="text"
             id="country"
             {...register("country", { required: "country is required" })}
@@ -47,7 +53,7 @@ const ShippingForm = () => {
               type="text"
               id="firstName"
               {...register("firstName", { required: "firstName is required" })}
-              className="border rounded w-full px-4 py-1.5 text-sm text-gray-600 outline-none focus:border-black"
+              className="border rounded w-full px-4 py-3 text-sm text-gray-600 outline-none focus:border-black"
             />
             <p className="text-red-500 text-xs">
               {" "}
@@ -65,7 +71,7 @@ const ShippingForm = () => {
               type="text"
               id="lastName"
               {...register("lastName", { required: "lastName is required" })}
-              className="border rounded w-full px-4 py-1.5  text-sm text-gray-600 outline-none focus:border-black"
+              className="border rounded w-full px-4 py-3  text-sm text-gray-600 outline-none focus:border-black"
             />
             <p className="text-red-500 text-xs"> {errors?.lastName?.message}</p>
           </div>
@@ -82,7 +88,7 @@ const ShippingForm = () => {
             type="text"
             id="address"
             {...register("address", { required: "address is required" })}
-            className="border rounded w-full px-4 py-1.5 text-sm text-gray-600 outline-none focus:border-black"
+            className="border rounded w-full px-4 py-3 text-sm text-gray-600 outline-none focus:border-black"
           />
           <p className="text-red-500 text-xs"> {errors?.address?.message}</p>
         </div>
@@ -101,7 +107,7 @@ const ShippingForm = () => {
               {...register("postalCode", {
                 required: "postalCode is required",
               })}
-              className="border rounded w-full px-4 py-1.5 text-sm text-gray-600 outline-none focus:border-black"
+              className="border rounded w-full px-4 py-3 text-sm text-gray-600 outline-none focus:border-black"
             />
             <p className="text-red-500 text-xs">
               {" "}
@@ -119,19 +125,19 @@ const ShippingForm = () => {
               type="text"
               id="city"
               {...register("city", { required: "city is required" })}
-              className="border rounded w-full px-4 py-1.5 text-sm text-gray-600 outline-none focus:border-black"
+              className="border rounded w-full px-4 py-3 text-sm text-gray-600 outline-none focus:border-black"
             />
             <p className="text-red-500 text-xs"> {errors?.city?.message}</p>
           </div>
         </div>
         <div className="mt-6 flex justify-between items-center">
-          <Link href="/cart" className="text-sm text-sky-600  cursor-pointer">
+          <Link href="/cart" className="text-sm text-blue-500  cursor-pointer">
             {" "}
             &#60; Return To Cart{" "}
           </Link>
           <button
             type="submit"
-            className="bg-sky-600 text-xs text-white rounded-md py-2.5 px-3"
+            className="blue-btn"
           >
             Continue To Shipping
           </button>
@@ -141,4 +147,4 @@ const ShippingForm = () => {
   );
 };
 
-export default ShippingForm;
+export default ShippingAddress;

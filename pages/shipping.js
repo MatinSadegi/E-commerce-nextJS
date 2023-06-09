@@ -1,84 +1,58 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useSession, signOut } from "next-auth/react";
-import CheckoutWizard from "../components/CheckoutWizard";
-import Image from "next/image";
-import customer from "../public/icons/customer.png";
+import React, { useContext } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { Store } from "../utils/store";
-import ShippingForm from "../components/ShippingForm";
+import dynamic from "next/dynamic";
+import ShippingCart from "../components/shipping/ShippingCart";
+import CheckoutWizard from "../components/CheckoutWizard";
+import Link from "next/link";
 
-const Shipping = () => {
+const shipping = () => {
   const { data } = useSession();
-  const { state, dispatch, total } = useContext(Store);
-  const { cart } = state;
-
-  const [cItems, setCItems] = useState([]);
-  const [subTotal, setSubTotal] = useState(0);
-  useEffect(() => {
-    setCItems(cart.cartItems);
-    setSubTotal(total.toFixed(2));
-  }, [cart.cartItems]);
+  const router = useRouter()
+  const { state } = useContext(Store);
+  const { shippingInfo } = state.cart;
   return (
-    <div className="w-full h-screen bg-red-100 flex">
-      <div className="w-1/2 flex justify-end pt-8 h-screen bg-white pr-14 ">
-        <div className=" max-w-[70%] ">
-          <CheckoutWizard />
-          <div className="my-8">
-            <h4 className="font-medium">Contact Information</h4>
-            <div className="mt-4 flex items-center">
-              <Image className="w-12" src={customer} alt="profile" />
-              <div>
-                <p className=" text-sm">{data?.user.name.email}</p>
-                <p
-                  onClick={() => signOut()}
-                  className="text-sky-500 text-sm cursor-pointer"
-                >
-                  Log out
-                </p>
-              </div>
+    <div className="w-full h-screen flex">
+      <div className="w-1/2 flex justify-end pt-14 h-screen bg-white pr-14 ">
+        <div className=" w-2/3 ">
+          <CheckoutWizard currentStep={3} />
+          <div className="border rounded-md w-full p-4 my-10 text-sm relative">
+            <div className="flex items-center pb-4">
+              <p className="text-gray-500">Contact</p>
+              <p className="ml-16">{data?.user.email}</p>
+              <Link
+                href="/information"
+                className="text-blue-500 absolute right-4"
+              >
+                Change
+              </Link>
+            </div>
+            <div className="flex items-center border-t pt-4">
+              <p className="text-gray-500">Ship to</p>
+              <p className="ml-16">{shippingInfo.address}</p>
+              <Link
+                href="/information"
+                className="text-blue-500 absolute right-4"
+              >
+                Change
+              </Link>
             </div>
           </div>
-          <ShippingForm />
-        </div>
-      </div>
-      <div className="w-1/2 flex justify-start pt-8 h-screen bg-gray-100 pl-14">
-        <div className=" max-w-[70%]">
-          {cItems.map((item) => (
-            <div key={item.slug} className="flex items-center mb-4 w-full">
-              <div className="relative">
-                <Image
-                  className="rounded"
-                  src={item.image}
-                  width={60}
-                  height={90}
-                  alt={item.name}
-                />
-                <span className="w-5 h-5 pb-0.5 flex justify-center items-center bg-black text-white text-xs rounded-full absolute -top-2 -right-2">
-                  {item.quantity}
-                </span>
-              </div>
-              <p className="pl-4 pr-14 text-sm">{item.name}</p>
-              <p className=" text-sm">${item.price.toFixed(2)}</p>
-            </div>
-          ))}
-          <div className="my-8 text-xs border-y py-4 border-black">
-            <div className="flex justify-between items-center ">
-              <p className="">Subtotal</p>
-              <p>$112.00</p>
-            </div>
-            <div className="flex justify-between items-center mt-2 ">
-              <p className="">Shipping</p>
-              <p>Calculated at next step </p>
-            </div>
+          <h4 className="text-lg font-semibold mb-4">Shipping Method</h4>
+          <div className="p-4 bg-sky-50 rounded-md flex justify-between border border-sky-600">
+            <p>Standard</p>
+            <p className=" font-medium">Free</p>
           </div>
-          <div className="flex justify-between items-center font-medium">
-            <p>Total</p>
-            <p>${subTotal}</p>
+          <div className="mt-6 flex justify-between items-center">
+            <Link href="/information" className=" text-blue-500 text-sm">&#60; &#160;Return to information</Link>
+            <button className="blue-btn" onClick={()=> router.push('/payment')}>Continue to payment</button>
           </div>
         </div>
       </div>
+      <ShippingCart />
     </div>
   );
 };
 
-Shipping.auth = true;
-export default Shipping;
+export default dynamic(() => Promise.resolve(shipping), { ssr: false });
