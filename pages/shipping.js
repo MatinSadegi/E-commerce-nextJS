@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const shipping = () => {
   const { data } = useSession();
-  const router = useRouter()
+  const router = useRouter();
   const { state } = useContext(Store);
   const { shippingInfo } = state.cart;
   return (
@@ -45,8 +45,15 @@ const shipping = () => {
             <p className=" font-medium">Free</p>
           </div>
           <div className="mt-6 flex justify-between items-center">
-            <Link href="/information" className=" text-blue-500 text-sm">&#60; &#160;Return to information</Link>
-            <button className="blue-btn" onClick={()=> router.push('/payment')}>Continue to payment</button>
+            <Link href="/information" className=" text-blue-500 text-sm">
+              &#60; &#160;Return to information
+            </Link>
+            <button
+              className="blue-btn"
+              onClick={() => router.push("/payment")}
+            >
+              Continue to payment
+            </button>
           </div>
         </div>
       </div>
@@ -54,5 +61,5 @@ const shipping = () => {
     </div>
   );
 };
-
+shipping.auth = true;
 export default dynamic(() => Promise.resolve(shipping), { ssr: false });

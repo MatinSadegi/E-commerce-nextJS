@@ -11,3 +11,6 @@ export {default as Burger} from "./burger.svg";
 export {default as Facebook} from './facebook.svg'
 export {default as Twitter} from './twitter.svg'
 export {default as Pinterest} from './pinterest.svg'
+export {default as Basket2} from './basket2.svg'
+export {default as UpArrow} from './up-arrow.svg'
+export {default as DownArrow} from './down-arrow.svg'

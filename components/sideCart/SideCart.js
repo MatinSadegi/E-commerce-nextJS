@@ -1,10 +1,10 @@
+
 import React, { useContext } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { sideCart, SideCartParent } from "../../utils/variants";
 import { Store } from "../../utils/store";
-import Image from "next/image";
 import { Multiply } from "../../public/icons";
 import SideCartItem from "./SideCartItem";
 
@@ -12,7 +12,6 @@ const SideCart = ({ showSideCart, setShowSideCart }) => {
   const router = useRouter();
   const { state,total } = useContext(Store);
   const { cart } = state;
-  const subTotal = cart.cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
   return (
     <motion.div
       initial="hidden"
@@ -22,7 +21,7 @@ const SideCart = ({ showSideCart, setShowSideCart }) => {
     >
       <motion.div
         variants={sideCart}
-        className="w-[30%] relative z-30 h-screen bg-white py-8 px-12"
+        className="relative w-[300px] px-4 z-30 h-screen bg-white py-8 sm:px-12 sm:w-[400px] md:w-[500px]"
       >
         <div className="flex justify-end">
           <div

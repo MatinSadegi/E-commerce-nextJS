@@ -70,5 +70,5 @@ const payment = () => {
     </div>
   );
 };
-
+payment.auth =true;
 export default dynamic(() => Promise.resolve(payment), { ssr: false });

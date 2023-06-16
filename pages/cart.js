@@ -32,7 +32,7 @@ const Cart = () => {
   };
   return (
     <Layout title="Shopping Cart">
-      <div className="max-w-[75%] mx-auto mt-8 flex flex-col justify-center items-center">
+      <div className="max-w-[1300px] px-7 mx-auto mt-8 flex flex-col justify-center items-center">
         <h1
           className={`font-bold mr-3 ${
             cart.cartItems.length === 0 ? "text-5xl" : "text-3xl"
@@ -56,7 +56,7 @@ const Cart = () => {
               <div className="flex w-[30%] justify-between">
                 <p className="font-medium text-gray-600">Price</p>
                 <p className="font-medium text-gray-600">Quantity</p>
-                <p className="font-medium text-gray-600">Total</p>
+                <p className="font-medium text-gray-600 hidden md:block">Total</p>
               </div>
             </div>
             {cItems.map((item) => (
@@ -71,7 +71,7 @@ const Cart = () => {
                     height={90}
                     alt={item.name}
                   />
-                  <div className="ml-10">
+                  <div className="ml-4 sm:ml-10">
                     <p className=" text-gray-600 font-medium mb-1 transition-all cursor-pointer hover:text-yellow-c">
                       {item.name}
                     </p>
@@ -98,7 +98,7 @@ const Cart = () => {
                       updateCartHandler(item, e.target.value);
                     }}
                   />
-                  <p>${(item.price * item.quantity).toFixed(2)}</p>
+                  <p className="hidden md:block">${(item.price * item.quantity).toFixed(2)}</p>
                 </div>
               </div>
             ))}

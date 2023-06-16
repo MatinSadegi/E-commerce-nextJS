@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       colors: {
         "yellow-c": "#c9aa6f",
-        shadow: "rgba(0,0,0,0.5)",
+        shadow: "rgba(0,0,0,0.1)",
       },
       fontFamily: {
         playFair: ["Playfair Display"],

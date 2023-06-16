@@ -1,85 +1,15 @@
-
-import { Splide, SplideSlide, SplideTrack} from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import ProductItem from "../components/ProductItem";
-
-import { motion } from "framer-motion";
 import db from "../utils/db";
 import Product from "../models/Product";
-import header1 from "../public/images/header/header1.jpg";
-import header2 from "../public/images/header/header2.jpg";
-import header3 from "../public/images/header/header4.jpg";
 import header8 from "../public/images/header/header8.png";
+import Banner from "../components/Banner";
 
 export default function Home({ products }) {
-
   return (
     <Layout title="Home Page">
-      <div className="w-full h-screen relative">
-        <motion.div className=" absolute top-1/3 -translate-x-1/2 left-1/2 text-center sm:left-16 sm:translate-x-0  z-30">
-          <motion.p
-            initial={{ opacity: 0, x: "-50vw" }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
-            className="text-white text-xl font-playFair"
-          >
-            summer is comming
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-white font-normal text-4xl md:text-6xl my-4"
-          >
-            A Time For Dress
-          </motion.h1>
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className=" py-3 px-6 text-white text-xs font-medium bg-rose-500 transition-all hover:bg-white hover:text-black"
-          >
-            SHOP NOW
-          </motion.button>
-        </motion.div>
-        <Splide
-          aria-label="My Favorite Images"
-          options={{
-            perPage: 1,
-            type: "loop",
-            autoplay: true,
-            speed: 700,
-            height: "100vh",
-            arrows: false,
-            pauseOnHover: false,
-            pauseOnFocus: false,
-          }}
-        >
-          <SplideSlide>
-            <Image
-              src={header1}
-              alt="banner"
-              className="object-cover object-top"
-            />
-          </SplideSlide>
-          <SplideSlide>
-            <Image
-              src={header2}
-              alt="banner"
-              className="object-cover object-top"
-            />
-          </SplideSlide>
-          <SplideSlide>
-            <Image
-              src={header3}
-              alt="banner"
-              className="object-cover object-top"
-            />
-          </SplideSlide>
-        </Splide>
-      </div>
+      <Banner />
       <div className="my-20 w-1/2 text-center mx-auto ">
         <h2>HAPPY SHOPPING</h2>
         <span className="border-l-2 border-gray-300 block mx-auto w-1 h-5 my-3"></span>
@@ -112,7 +42,7 @@ export default function Home({ products }) {
         <div className="w-[30%] bg-yellow-100 rounded-r-full relative  ">
           <Image
             src={header8}
-            className=" max-w-xs -right-8 sm:max-w-md sm:-right-16 md:max-w-2xl md:-right-14 lg:-right-10 xl:max-w-3xl xl:right-4 absolute  bottom-0 z-10"
+            className=" max-w-xs -right-8 sm:max-w-md sm:-right-16 md:max-w-2xl md:-right-14 lg:-right-10 xl:max-w-3xl xl:right-16 absolute  bottom-0 z-10"
             alt="header"
           />
         </div>

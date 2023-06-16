@@ -53,3 +53,18 @@ export const hamburgerMenu = {
     },
   },
 };
+
+export const summary = {
+  show: {
+    height: "100%",
+    transition: {
+      duration: 0.25,
+    },
+  },
+  hide: {
+    height: "0px",
+    transition: {
+      duration: 0.25,
+    },
+  },
+};

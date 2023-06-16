@@ -17,7 +17,7 @@ const StickyFooter = ({ name, reviews, image, rating, addToCart }) => {
   });
   return (
     <div
-      className={`w-screen bg-[rgba(0,0,0,0.9)] text-white flex justify-center items-center gap-5 py-5 fixed bottom-0 transition-all duration-500 ${
+      className={`w-screen bg-[rgba(0,0,0,0.9)] text-white hidden justify-center items-center gap-5 py-5 fixed bottom-0 transition-all duration-500 md:flex ${
         showSticky ? " opacity-100" : "opacity-0"
       }`}
     >

@@ -53,7 +53,7 @@ const Layout = ({ children, title }) => {
       </Head>
       <div className="min-h-screen flex flex-col justify-between ">
         <header className="py-3">
-          <nav className=" px-24 flex flex-col items-center relative w-full lg:flex-row ">
+          <nav className="px-8 flex flex-col items-center relative w-full md:px-24 lg:flex-row ">
             <motion.div
               initial="open"
               animate={isOpen ? "open" : "close"}
@@ -67,7 +67,7 @@ const Layout = ({ children, title }) => {
                 Home
               </Link>
             </motion.div>
-            <div className="flex justify-between items-center w-full lg:w-[55%]">
+            <div className="flex  justify-between items-center w-full lg:w-[55%]">
               <h1 className="text-4xl font-bold flex lg:justify-center ">
                 Amazoon
               </h1>
