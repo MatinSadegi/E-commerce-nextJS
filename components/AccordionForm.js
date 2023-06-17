@@ -61,7 +61,7 @@ const AccordionForm = ({ description, category }) => {
             showSizeChart ? "h-48 mt-2" : "h-0 mt-0 "
           }`}
         >
-          <Image src={clothSize} width={500} height={100} />
+          <Image src={clothSize} width={500} height={100} alt="cloth-size" />
         </div>
       </div>
       <div className="mt-4 text-xs font-normal flex gap-1">

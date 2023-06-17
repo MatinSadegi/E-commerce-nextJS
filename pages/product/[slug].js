@@ -65,7 +65,7 @@ const ProductScreen = ({ product }) => {
             <p className="text-gray-500">${product.price}.00</p>
             {product.countInStock > 0 ? (
               <div className="flex items-center">
-                <img
+                <Image
                   src="https://img.icons8.com/material-outlined/16/null/ok--v1.png"
                   alt="available"
                 />

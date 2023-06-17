@@ -9,12 +9,12 @@ const ShippingCart = () => {
   const [cItems, setCItems] = useState([]);
   const [subTotal, setSubTotal] = useState(0);
   const [showSummary, setShowSummary] = useState(false);
-  const { state, dispatch, total } = useContext(Store);
+  const { state,total } = useContext(Store);
   const { cart } = state;
   useEffect(() => {
     setCItems(cart.cartItems);
     setSubTotal(total.toFixed(2));
-  }, [cart.cartItems]);
+  }, [cart.cartItems , total]);
 
   return (
     <div className="order-first bg-gray-50 flex flex-col items-center justify-center  lg:w-1/2  lg:order-last lg:pb-0 lg:items-start lg:justify-start lg:pt-14">

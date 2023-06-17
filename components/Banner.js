@@ -1,5 +1,5 @@
 import React from 'react';
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import { Splide, SplideSlide} from "@splidejs/react-splide";
 import Image from 'next/image';
 import "@splidejs/react-splide/css";
 import { motion } from "framer-motion";

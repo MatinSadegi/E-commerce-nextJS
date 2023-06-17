@@ -3,18 +3,21 @@ import { getSession, useSession } from "next-auth/react";
 import Layout from "../components/Layout";
 
 const Profile = () => {
-  const { data:session } = useSession();
-  const {firstName, lastName} = session?.user?.name
-  
+  const { data: session } = useSession();
+  // const {firstName, lastName} = session?.user?.name
+  const {
+    user: {
+      name: { firstName, lastName },
+    },
+  } = session;
+
   return (
     <Layout>
       <div className="px-14 mx-auto my-10 ">
         <h1 className="text-center text-4xl">My Account</h1>
         <div className="mb-8 mt-10">
           <h2 className="mb-2 text-3xl">Order History</h2>
-          <p className=" text-gray-600">
-            You haven't placed any orders yet.
-          </p>
+          <p className=" text-gray-600">You haven not placed any orders yet.</p>
         </div>
         <div className="mb-4">
           <h2 className="mb-2 text-3xl">Account Details</h2>

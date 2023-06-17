@@ -29,7 +29,7 @@ const Login = () => {
     password: "",
   });
   const router = useRouter();
-  const { data, status } = useSession();
+  const { status } = useSession();
   const submitHandler = async (e) => {
     e.preventDefault();
     if (isLogin) {
@@ -49,7 +49,7 @@ const Login = () => {
       }
     } else {
       try {
-        const result = await createUser(form);
+        await createUser(form);
       } catch (error) {
         toast.error(error, { theme: "dark", autoClose: 3000 });
       }

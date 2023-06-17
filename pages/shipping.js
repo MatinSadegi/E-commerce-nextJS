@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { Store } from "../utils/store";
@@ -7,7 +7,7 @@ import ShippingCart from "../components/shipping/ShippingCart";
 import CheckoutWizard from "../components/CheckoutWizard";
 import Link from "next/link";
 
-const shipping = () => {
+const Shipping = () => {
   const { data } = useSession();
   const router = useRouter();
   const { state } = useContext(Store);
@@ -61,5 +61,5 @@ const shipping = () => {
     </div>
   );
 };
-shipping.auth = true;
-export default dynamic(() => Promise.resolve(shipping), { ssr: false });
+Shipping.auth = true;
+export default dynamic(() => Promise.resolve(Shipping), { ssr: false });

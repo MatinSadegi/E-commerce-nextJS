@@ -1,8 +1,7 @@
 import React from "react";
-import { useRouter } from "next/router";
 
 const CheckoutWizard = ({ currentStep = 0 }) => {
-  const router = useRouter()
+
   return (
     <div className="flex ">
       {["Cart >", "Information >","Shipping >", "Payment"].map((step, index) => (

@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { Store } from "../utils/store";
@@ -6,7 +7,7 @@ import dynamic from "next/dynamic";
 import CheckoutWizard from "../components/CheckoutWizard";
 import ShippingCart from "../components/shipping/ShippingCart";
 
-const payment = () => {
+const Payment = () => {
     const { data } = useSession();
     const { state } = useContext(Store);
     const { shippingInfo } = state.cart;
@@ -49,7 +50,7 @@ const payment = () => {
             All transactions are secure and encrypted.
           </p>
           <div className="my-5 border  rounded-md flex flex-col items-center pt-8 pb-5">
-            <img
+            <Image
               width="50"
               height="50"
               src="https://img.icons8.com/ios/50/9ca3af/cash-in-hand.png"
@@ -70,5 +71,5 @@ const payment = () => {
     </div>
   );
 };
-payment.auth =true;
-export default dynamic(() => Promise.resolve(payment), { ssr: false });
+Payment.auth =true;
+export default dynamic(() => Promise.resolve(Payment), { ssr: false });

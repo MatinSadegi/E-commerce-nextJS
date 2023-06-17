@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
@@ -171,25 +172,25 @@ const Layout = ({ children, title }) => {
                 </button>
               </div>
               <div className="flex items-center gap-3 mt-4">
-                <img
+                <Image
                   width="22"
                   height="22"
                   src="https://img.icons8.com/ios-glyphs/30/facebook-f.png"
                   alt="facebook-f"
                 />
-                <img
+                <Image
                   width="22"
                   height="22"
                   src="https://img.icons8.com/ios-glyphs/30/twitter--v1.png"
                   alt="twitter--v1"
                 />
-                <img
+                <Image
                   width="22"
                   height="22"
                   src="https://img.icons8.com/windows/32/pinterest-p.png"
                   alt="pinterest-p"
                 />
-                <img
+                <Image
                   width="22"
                   height="22"
                   src="https://img.icons8.com/ios/50/instagram-new--v1.png"
