@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { Store } from "../utils/store";
+import { Store } from "../utils/Store";
 import dynamic from "next/dynamic";
 import CheckoutWizard from "../components/CheckoutWizard";
 import ShippingCart from "../components/shipping/ShippingCart";

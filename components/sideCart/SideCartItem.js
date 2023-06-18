@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Image from "next/image";
-import { Store } from "../../utils/store";
+import { Store } from "../../utils/Store";
 import { Multiply } from "../../public/icons";
 
 const SideCartItem = ({ item,image, name, quantity, price }) => {

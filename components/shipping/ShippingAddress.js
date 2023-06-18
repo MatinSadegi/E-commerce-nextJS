@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useRouter } from "next/router";
 
 import { useForm } from "react-hook-form";
-import { Store } from "../../utils/store";
+import { Store } from "../../utils/Store";
 import Link from "next/link";
 
 const ShippingAddress = () => {

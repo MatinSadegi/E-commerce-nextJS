@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-
 import { useSession, signOut } from "next-auth/react";
 import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
@@ -14,7 +13,7 @@ import {
   Logout,
   Burger,
 } from "../public/icons";
-import { Store } from "../utils/store";
+import { Store } from "../utils/Store";
 const Layout = ({ children, title }) => {
   const { status } = useSession();
   const { state } = useContext(Store);

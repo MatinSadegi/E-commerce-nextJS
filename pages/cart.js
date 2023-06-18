@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { Store } from "../utils/store";
+import { Store } from "../utils/Store";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import { toast } from "react-toastify";

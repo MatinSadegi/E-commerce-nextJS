@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { sideCart, SideCartParent } from "../../utils/variants";
-import { Store } from "../../utils/store";
+import { Store } from "../../utils/Store";
 import { Multiply } from "../../public/icons";
 import SideCartItem from "./SideCartItem";
 

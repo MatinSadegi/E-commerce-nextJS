@@ -3,7 +3,7 @@ import axios from "axios";
 import Image from "next/image";
 import Product from "../../models/Product";
 import db from "../../utils/db";
-import { Store } from "../../utils/store";
+import { Store } from "../../utils/Store";
 import Layout from "../../components/Layout";
 import AccordionForm from "../../components/AccordionForm";
 import SideCart from "../../components/sideCart/SideCart";

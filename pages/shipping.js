@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { Store } from "../utils/store";
+import { Store } from "../utils/Store";
 import dynamic from "next/dynamic";
 import ShippingCart from "../components/shipping/ShippingCart";
 import CheckoutWizard from "../components/CheckoutWizard";

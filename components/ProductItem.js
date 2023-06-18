@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Basket, Favorite } from "../public/icons";
 import SideCart from "./sideCart/SideCart";
 import { useContext } from "react";
-import { Store } from "../utils/store";
+import { Store } from "../utils/Store";
 
 const ProductItem = ({ product }) => {
   const { state, dispatch, showSideCart, setShowSideCart } = useContext(Store);
