@@ -172,25 +172,25 @@ const Layout = ({ children, title }) => {
                 </button>
               </div>
               <div className="flex items-center gap-3 mt-4">
-                <Image
+                <img
                   width="22"
                   height="22"
                   src="https://img.icons8.com/ios-glyphs/30/facebook-f.png"
                   alt="facebook-f"
                 />
-                <Image
+                <img
                   width="22"
                   height="22"
                   src="https://img.icons8.com/ios-glyphs/30/twitter--v1.png"
                   alt="twitter--v1"
                 />
-                <Image
+                <img
                   width="22"
                   height="22"
                   src="https://img.icons8.com/windows/32/pinterest-p.png"
                   alt="pinterest-p"
                 />
-                <Image
+                <img
                   width="22"
                   height="22"
                   src="https://img.icons8.com/ios/50/instagram-new--v1.png"

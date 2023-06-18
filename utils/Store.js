@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect, useState } from "react";
+import { createContext, useReducer, useState } from "react";
 import { cartReducer } from "../reducer/cartReducer";
 import { INITIAL_STATE } from "../reducer/cartReducer";
 
@@ -11,6 +11,6 @@ export function StoreProvider({ children }) {
     0
   );
   const [showSideCart, setShowSideCart] = useState(false);
-  const value = { state, dispatch, total, showSideCart, setShowSideCart};
+  const value = { state, dispatch, total, showSideCart, setShowSideCart };
   return <Store.Provider value={value}>{children}</Store.Provider>;
 }
