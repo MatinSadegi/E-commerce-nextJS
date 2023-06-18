@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Store } from "../../utils/store";
+import { Store } from "../../utils/Store";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Basket2, UpArrow, DownArrow } from "../../public/icons";
