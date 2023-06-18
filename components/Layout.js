@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import Image from "next/image";
+
 import { useSession, signOut } from "next-auth/react";
 import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
